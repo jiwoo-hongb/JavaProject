@@ -15,6 +15,7 @@ import java.awt.*;
 
 public class Main_Gui extends JFrame {
     JPanel main_Panel = new JPanel(); //메인 패널
+    JLabel soulution_Label = new JLabel();
     JLabel result_Label = new JLabel();//결과값이 나올 곳
     GridBagConstraints gbc = new GridBagConstraints();
 
@@ -56,9 +57,18 @@ public class Main_Gui extends JFrame {
 
     void showCenter(){
         JPanel panelResult = new JPanel(new BorderLayout());
+        JPanel textPanel = new JPanel(new GridBagLayout());
+
+        soulution_Label = new JLabel("0");
         result_Label = new JLabel("0");
 
-        panelResult.add(result_Label, BorderLayout.EAST);
+        gbc.gridy=0;
+        textPanel.add(soulution_Label, gbc);
+        gbc.gridy=1;
+        textPanel.add(result_Label, gbc);
+
+        panelResult.add(textPanel, BorderLayout.EAST);
+
         panelResult.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         main_Panel.add(panelResult, gbc);
     }
