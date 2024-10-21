@@ -19,6 +19,9 @@ public class BtnClickListener implements ActionListener {
     InputHandler inputHandler;
     ACHandler acHandler;
     CHandler cHandler;
+    BackspaceHandler backspaceHandler;
+    SignChangeHandler signChangeHandler;
+    OperatorHandler operatorHandler;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -35,6 +38,24 @@ public class BtnClickListener implements ActionListener {
             case "CE":
                 cHandler.clearCurrent(inputHandler);
                 solutionLabel.setText(inputHandler.getCurrentInput());
+                break;
+
+            case "←":
+                backspaceHandler.deleteLast(inputHandler);
+                solutionLabel.setText(inputHandler.getCurrentInput());
+                break;
+
+            case "±":
+                signChangeHandler.changeSign(inputHandler);
+                solutionLabel.setText(inputHandler.getCurrentInput());
+                break;
+
+            case "÷":
+            case "×":
+            case "–":
+            case "+":
+                operatorHandler.setOperator(cmd, inputHandler);
+                solutionLabel.setText(inputHandler.getCurrentInput() + " " + cmd);
                 break;
 
             default: // 숫자 및 소수점 입력 처리
