@@ -20,6 +20,9 @@ public class InputHandler {
 
     public void clearAll() {
         currentInput.setLength(0);
+        firstOperand = 0;
+        secondOperand = 0;
+        operator = null;
     }
 
     public void clearCurrent(){
@@ -37,6 +40,13 @@ public class InputHandler {
             firstOperand = Double.parseDouble(currentInput.toString());
         }
         return firstOperand;
+    }
+
+    public double getSecondOperand() {
+        if (operator != null && currentInput.length() > 0) {
+            secondOperand = Double.parseDouble(currentInput.toString());
+        }
+        return secondOperand;
     }
 
     public void setOperator(String operator) {

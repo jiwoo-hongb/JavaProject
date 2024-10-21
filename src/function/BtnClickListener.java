@@ -1,27 +1,37 @@
 package function;
-/**
- * - 10.19: 첫 BtnClickListener 클래스 생성
- */
-
-/**
- * Main_Gui클래스로부터 ButtonEvent 제공
- * Click 이벤트시 cmd에 결과 출력
- */
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BtnClickListener implements ActionListener {
+
     JLabel solutionLabel;
     JLabel resultLabel;
 
     InputHandler inputHandler;
+    CalculatorLogic calculatorLogic;
     ACHandler acHandler;
     CHandler cHandler;
     BackspaceHandler backspaceHandler;
+    EqualHandler equalHandler;
     SignChangeHandler signChangeHandler;
     OperatorHandler operatorHandler;
+    DecimalHandler decimalHandler;
+
+    public BtnClickListener(JLabel solutionLabel, JLabel resultLabel) {
+        this.solutionLabel = solutionLabel;
+        this.resultLabel = resultLabel;
+        this.inputHandler = new InputHandler();
+        this.calculatorLogic = new CalculatorLogic();
+        this.acHandler = new ACHandler();
+        this.cHandler = new CHandler();
+        this.backspaceHandler = new BackspaceHandler();
+        this.equalHandler = new EqualHandler();
+        this.signChangeHandler = new SignChangeHandler();
+        this.operatorHandler = new OperatorHandler();
+        this.decimalHandler = new DecimalHandler();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -45,6 +55,11 @@ public class BtnClickListener implements ActionListener {
                 solutionLabel.setText(inputHandler.getCurrentInput());
                 break;
 
+            case "=":
+                equalHandler.calculate(inputHandler, calculatorLogic);
+                resultLabel.setText(String.valueOf(inputHandler.getCurrentInput()));
+                break;
+
             case "±":
                 signChangeHandler.changeSign(inputHandler);
                 solutionLabel.setText(inputHandler.getCurrentInput());
@@ -56,6 +71,11 @@ public class BtnClickListener implements ActionListener {
             case "+":
                 operatorHandler.setOperator(cmd, inputHandler);
                 solutionLabel.setText(inputHandler.getCurrentInput() + " " + cmd);
+                break;
+
+            case ".":
+                decimalHandler.addDecimalPoint(inputHandler);
+                solutionLabel.setText(inputHandler.getCurrentInput());
                 break;
 
             default: // 숫자 및 소수점 입력 처리

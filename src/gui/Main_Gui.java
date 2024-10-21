@@ -5,17 +5,9 @@ import function.BtnClickListener; // 버튼 입력 기능 가져오기
 import javax.swing.*;
 import java.awt.*;
 
-/**
- *
-// * @create
- * - 10.15: 첫 Main_Gui 클래스 생성
- * - 10.18: Main_Gui 프로토 타입 수정 / Javadocs 첫 생성
- * - 10.19: BtnClickListener 클래스 생성
- */
-
 public class Main_Gui extends JFrame {
     JPanel main_Panel = new JPanel(); //메인 패널
-    JLabel soulution_Label = new JLabel();
+    JLabel solution_Label = new JLabel();
     JLabel result_Label = new JLabel();//결과값이 나올 곳
     GridBagConstraints gbc = new GridBagConstraints();
 
@@ -59,11 +51,11 @@ public class Main_Gui extends JFrame {
         JPanel panelResult = new JPanel(new BorderLayout());
         JPanel textPanel = new JPanel(new GridBagLayout());
 
-        soulution_Label = new JLabel("0");
+        solution_Label = new JLabel("0");
         result_Label = new JLabel("0");
 
         gbc.gridy=0;
-        textPanel.add(soulution_Label, gbc);
+        textPanel.add(solution_Label, gbc);
         gbc.gridy=1;
         textPanel.add(result_Label, gbc);
 
@@ -77,9 +69,11 @@ public class Main_Gui extends JFrame {
         JPanel panelBtn = new JPanel(new GridLayout(5, 4, 5, 5));
         String[] cal_btn = {"AC", "CE", "←", "÷", "7", "8", "9", "×", "4", "5", "6", "–", "1", "2", "3", "+", "±", "0", ".", "="};
 
+        BtnClickListener btnClickListener = new BtnClickListener(solution_Label, result_Label);
+
         for(int i = 0; i < 20; i++){
             JButton btn = new JButton(cal_btn[i]);
-            btn.addActionListener(new BtnClickListener());
+            btn.addActionListener(btnClickListener);
             panelBtn.add(btn);
         }
         panelBtn.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
@@ -89,6 +83,5 @@ public class Main_Gui extends JFrame {
     public static void main(String[] args) {
         new Main_Gui();
     }
-
 
 }
