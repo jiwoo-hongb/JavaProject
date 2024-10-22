@@ -70,20 +70,21 @@ public class Main_Gui extends JFrame {
 
     void showSouth() {
         JPanel panelBtn = new JPanel(new GridLayout(5, 4, 5, 5));
+        panelBtn.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
+        panelBtn.setBackground(design.getDarkColor()); //
+
         String[] cal_btn = {"AC", "CE", "←", "÷", "7", "8", "9", "×", "4", "5", "6", "–", "1", "2", "3", "+", "±", "0", ".", "="};
 
         BtnClickListener btnClickListener = new BtnClickListener(solution_Label, result_Label);
 
         for (int i = 0; i < 20; i++) {
-            JButton btn = new JButton(cal_btn[i]);
+            RoundBtn btn = new RoundBtn(cal_btn[i]);
 
             design.styleButton(btn, cal_btn[i]); //
             btn.addActionListener(btnClickListener);
             panelBtn.add(btn);
         }
 
-        panelBtn.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
-        panelBtn.setBackground(design.getDarkColor()); //
         main_Panel.add(panelBtn, gbc);
     }
 

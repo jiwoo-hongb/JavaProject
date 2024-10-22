@@ -5,17 +5,17 @@ import java.awt.*;
 
 public class Design_forGui {
     // 색상 및 폰트 관련 변수들
-    private final Color darkColor = new Color(80, 82, 85);
-    private final Color operatorColor = new Color(255, 159, 9);
-    private final Color functionColor = new Color(97, 99, 102);
-    private final Color numberColor = new Color(123, 125, 127);
+    private final Color operatorColor = new Color(227, 148, 55);
+    private final Color backgroundColor = new Color(0,0,0);
+    private final Color controlColor = new Color(165, 165, 165);
+    private final Color numBtnColor = new Color(50,50,50);
 
     private final Font buttonFont = new Font("Dialog", Font.BOLD, 20);
     private final Font labelFont = new Font("Dialog", Font.PLAIN, 40);
 
     // 색상 가져오기
     public Color getDarkColor() {
-        return darkColor;
+        return backgroundColor;
     }
 
     public Color getOperatorColor() {
@@ -23,11 +23,11 @@ public class Design_forGui {
     }
 
     public Color getFunctionColor() {
-        return functionColor;
+        return controlColor;
     }
 
     public Color getNumberColor() {
-        return numberColor;
+        return numBtnColor;
     }
 
     // 폰트 가져오기
@@ -40,16 +40,16 @@ public class Design_forGui {
     }
 
     // 버튼 디자인 설정
-    public void styleButton(JButton button, String text) {
+    public void styleButton(RoundBtn button, String text) {
         button.setFont(buttonFont);
         button.setForeground(Color.white);
 
         if (text.matches("[÷×–+=]")) {
             button.setBackground(operatorColor);
-        } else if (text.matches("[ACCE←±]")) {
-            button.setBackground(functionColor);
+        } else if (text.matches("^(AC|CE|←)$")) {
+            button.setBackground(controlColor);
         } else {
-            button.setBackground(numberColor);
+            button.setBackground(numBtnColor);
         }
 
         button.setOpaque(true);
