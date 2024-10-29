@@ -1,7 +1,7 @@
-package function;
-
-public class ACHandler {
-    public void clearAll(InputHandler inputHandler){
-        inputHandler.clearAll();
-    }
-}
+//package function;
+//
+//public class ACHandler {
+//    public void clearAll(InputHandler inputHandler){
+//        inputHandler.clearAll();
+//    }
+//}

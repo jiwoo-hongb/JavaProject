@@ -52,13 +52,14 @@ public class Design_forGui {
             button.setBackground(numBtnColor);
         }
 
-        button.setOpaque(true);
+        button.setOpaque(false);
     }
 
     // 라벨 디자인 설정
     public void styleLabel(JLabel label) {
         label.setFont(labelFont);
         label.setHorizontalAlignment(SwingConstants.RIGHT); // 오른쪽 정렬
-        label.setForeground(Color.WHITE);
+        label.setForeground(operatorColor);
+
     }
 }

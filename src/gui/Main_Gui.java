@@ -1,7 +1,5 @@
 package gui;
 
-import function.BtnClickListener; // 버튼 입력 기능 가져오기
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -56,6 +54,15 @@ public class Main_Gui extends JFrame {
         solution_Label = new JLabel("0");
         result_Label = new JLabel("0");
 
+        //solution_Label, result_Label 디자인, 폰트 수정
+        solution_Label.setOpaque(true);
+        solution_Label.setBackground(Color.black);
+        solution_Label.setForeground(Color.white);
+
+        result_Label.setOpaque(true);
+        result_Label.setBackground(Color.black);
+        result_Label.setForeground(Color.white);
+
         gbc.gridy = 0;
         textPanel.add(solution_Label, gbc);
         gbc.gridy = 1;
@@ -72,6 +79,7 @@ public class Main_Gui extends JFrame {
         JPanel panelBtn = new JPanel(new GridLayout(5, 4, 5, 5));
         panelBtn.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
         panelBtn.setBackground(design.getDarkColor()); //
+
 
         String[] cal_btn = {"AC", "CE", "←", "÷", "7", "8", "9", "×", "4", "5", "6", "–", "1", "2", "3", "+", "±", "0", ".", "="};
 
