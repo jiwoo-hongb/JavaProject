@@ -14,7 +14,7 @@ public class Design_forGui {
     private final Font labelFont = new Font("Dialog", Font.PLAIN, 40);
 
     // 색상 가져오기
-    public Color getDarkColor() {
+    public Color getBackgroundColor() {
         return backgroundColor;
     }
 
@@ -40,26 +40,27 @@ public class Design_forGui {
     }
 
     // 버튼 디자인 설정
-    public void styleButton(RoundBtn button, String text) {
+    public void styleButton(JButton button, String text) {
         button.setFont(buttonFont);
         button.setForeground(Color.white);
 
-        if (text.matches("[÷×–+=]")) {
+        if (text.matches("[÷×\\-+=]")) {
             button.setBackground(operatorColor);
-        } else if (text.matches("^(AC|CE|←)$")) {
+        } else if (text.matches("^(C|±|%)$")) {
             button.setBackground(controlColor);
         } else {
             button.setBackground(numBtnColor);
         }
 
-        button.setOpaque(false);
+        button.setOpaque(true);
     }
 
-    // 라벨 디자인 설정
-    public void styleLabel(JLabel label) {
-        label.setFont(labelFont);
-        label.setHorizontalAlignment(SwingConstants.RIGHT); // 오른쪽 정렬
-        label.setForeground(operatorColor);
-
+    // 입력 공간 디자인 설정
+    public void styleInputSpace(JTextField inputSpace) {
+        inputSpace.setEditable(false);
+        inputSpace.setBackground(backgroundColor);
+        inputSpace.setHorizontalAlignment(JTextField.RIGHT);
+        inputSpace.setFont(labelFont);
+        inputSpace.setForeground(Color.white);
     }
 }

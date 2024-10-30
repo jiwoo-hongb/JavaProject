@@ -1,99 +1,87 @@
 package gui;
 
+import gui.Design_forGui;
+import gui.RoundBtn;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Main_Gui extends JFrame {
-    JPanel main_Panel = new JPanel(); //메인 패널
-    JLabel solution_Label = new JLabel();
-    JLabel result_Label = new JLabel(); // 결과값이 나올 곳
-    GridBagConstraints gbc = new GridBagConstraints();
-    Design_forGui design = new Design_forGui();
+    private final int width = 240;
+    private final int height = 370;
+    private JTextField inputSpace = new JTextField();
+    private String[] buttonNames = {"C", "±", "%", "÷", "7", "8", "9", "×", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="};
+    private RoundBtn[] buttons = new RoundBtn[buttonNames.length]; // RoundBtn 배열로 변경
+    private Design_forGui design = new Design_forGui();
 
-    Main_Gui() {
-        setTitle("계산기");
-        main_Panel.setLayout(new GridBagLayout());
+    public Main_Gui() {
+        setLayout(null);
+
+        // 입력 공간 디자인 설정
+        design.styleInputSpace(inputSpace); // 기존 `styleLabel`을 `styleInputSpace`로 변경하여 사용
+        inputSpace.setBounds(0, 0, width, 70);
+
+        JPanel buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setBounds(0, 70, width, 274);
+        buttonPanel.setBackground(design.getBackgroundColor());
+
+        GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
 
-        gbc.weightx = 1;
-        gbc.weighty = 0.1;
-        gbc.gridy = 0;
-        showNorth();
+        int x = 0, y = 0;
+        for (int i = 0; i < buttonNames.length; i++) {
+            buttons[i] = new RoundBtn(buttonNames[i]); // RoundBtn 생성
 
-        gbc.weightx = 1;
-        gbc.weighty = 0.2;
-        gbc.gridy = 1;
-        showCenter();
+            // 버튼 디자인 적용
+            design.styleButton(buttons[i], buttonNames[i]);
 
-        gbc.weightx = 1;
-        gbc.weighty = 0.7;
-        gbc.gridy = 2;
-        showSouth();
-
-        add(main_Panel);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(335, 540);
-        setVisible(true);
-    }
-
-    void showNorth() {
-        JPanel panelStandard = new JPanel(new BorderLayout());
-        JLabel label = new JLabel("표준");
-
-        panelStandard.add(label, BorderLayout.WEST);
-        panelStandard.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-        panelStandard.setBackground(design.getDarkColor());
-
-        main_Panel.add(panelStandard, gbc);
-    }
-
-    void showCenter() {
-        JPanel panelResult = new JPanel(new BorderLayout());
-        JPanel textPanel = new JPanel(new GridBagLayout());
-
-        solution_Label = new JLabel("0");
-        result_Label = new JLabel("0");
-
-        //solution_Label, result_Label 디자인, 폰트 수정
-        solution_Label.setOpaque(true);
-        solution_Label.setBackground(Color.black);
-        solution_Label.setForeground(Color.white);
-
-        result_Label.setOpaque(true);
-        result_Label.setBackground(Color.black);
-        result_Label.setForeground(Color.white);
-
-        gbc.gridy = 0;
-        textPanel.add(solution_Label, gbc);
-        gbc.gridy = 1;
-        textPanel.add(result_Label, gbc);
-
-        panelResult.add(textPanel, BorderLayout.EAST);
-
-        panelResult.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-        panelResult.setBackground(design.getDarkColor());
-        main_Panel.add(panelResult, gbc);
-    }
-
-    void showSouth() {
-        JPanel panelBtn = new JPanel(new GridLayout(5, 4, 5, 5));
-        panelBtn.setBorder(BorderFactory.createEmptyBorder(0, 5, 5, 5));
-        panelBtn.setBackground(design.getDarkColor()); //
-
-
-        String[] cal_btn = {"AC", "CE", "←", "÷", "7", "8", "9", "×", "4", "5", "6", "–", "1", "2", "3", "+", "±", "0", ".", "="};
-
-        BtnClickListener btnClickListener = new BtnClickListener(solution_Label, result_Label);
-
-        for (int i = 0; i < 20; i++) {
-            RoundBtn btn = new RoundBtn(cal_btn[i]);
-
-            design.styleButton(btn, cal_btn[i]); //
-            btn.addActionListener(btnClickListener);
-            panelBtn.add(btn);
+            if (buttonNames[i].equals("0")) {
+                addComponent(buttonPanel, buttons[i], x, y, 2, 1, gbc);
+                x++;
+            } else {
+                addComponent(buttonPanel, buttons[i], x, y, 1, 1, gbc);
+            }
+            x++;
+            if (x > 3) {
+                x = 0;
+                y++;
+            }
         }
 
-        main_Panel.add(panelBtn, gbc);
+        add(inputSpace);
+        add(buttonPanel);
+
+        setTitle("Calculator");
+        setVisible(true);
+        setSize(width, height);
+        setLocationRelativeTo(null);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void addComponent(JPanel panel, Component comp, int x, int y, int width, int height, GridBagConstraints gbc) {
+        gbc.gridx = x;
+        gbc.gridy = y;
+        gbc.gridwidth = width;
+        gbc.gridheight = height;
+        panel.add(comp, gbc);
+    }
+
+    public JTextField getInputSpace() {
+        return inputSpace;
+    }
+
+    public RoundBtn[] getButtons() {
+        return buttons;
+    }
+
+    public void addActionListener(ActionListener listener) {
+        for (RoundBtn button : buttons) {
+            button.addActionListener(listener);
+        }
     }
 
     public static void main(String[] args) {
