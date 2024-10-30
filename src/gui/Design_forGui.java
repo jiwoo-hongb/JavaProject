@@ -6,9 +6,9 @@ import java.awt.*;
 public class Design_forGui {
     // 색상 및 폰트 관련 변수들
     private final Color operatorColor = new Color(227, 148, 55);
-    private final Color backgroundColor = new Color(0,0,0);
+    private final Color backgroundColor = new Color(0, 0, 0);
     private final Color controlColor = new Color(165, 165, 165);
-    private final Color numBtnColor = new Color(50,50,50);
+    private final Color numBtnColor = new Color(50, 50, 50);
 
     private final Font buttonFont = new Font("Dialog", Font.BOLD, 20);
     private final Font labelFont = new Font("Dialog", Font.PLAIN, 40);

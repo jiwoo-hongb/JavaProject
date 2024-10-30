@@ -5,7 +5,7 @@ import java.util.Stack;
 public class CalculatorLogic {
     private Stack<Double> numStack = new Stack<>();
     private Stack<Character> opStack = new Stack<>();
-    private String num = "";
+    private StringBuilder num = new StringBuilder();
 
     double calculate(String inputText) {
         preprocess(inputText); // 입력된 문자열 전처리
@@ -25,16 +25,16 @@ public class CalculatorLogic {
     private void preprocess(String inputText) {
         numStack.clear();
         opStack.clear();
-        num = ""; // num 초기화
+        num.setLength(0); // num 초기화
 
         for (int i = 0; i < inputText.length(); i++) {
             char ch = inputText.charAt(i);
 
             // 연산자인 경우 처리
             if (ch == '-' || ch == '+' || ch == 'x' || ch == '÷' || ch == '%') {
-                if (!num.isEmpty()) {
-                    numStack.push(Double.valueOf(num)); // 현재 숫자를 스택에 추가
-                    num = ""; // num 초기화
+                if (num.length() > 0) {
+                    numStack.push(Double.valueOf(num.toString())); // 현재 숫자를 스택에 추가
+                    num.setLength(0); // num 초기화
                 }
 
                 // 연산자 우선순위 처리
@@ -46,13 +46,13 @@ public class CalculatorLogic {
                 }
                 opStack.push(ch); // 연산자를 스택에 추가
             } else {
-                num += ch; // 숫자 추가
+                num.append(ch); // 숫자 추가
             }
         }
 
         // 마지막 숫자 처리
-        if (!num.isEmpty()) {
-            numStack.push(Double.valueOf(num)); // 마지막 숫자 스택에 추가
+        if (num.length() > 0) {
+            numStack.push(Double.valueOf(num.toString())); // 마지막 숫자 스택에 추가
         }
     }
 
@@ -62,15 +62,15 @@ public class CalculatorLogic {
                 return n1 * n2;
             case '÷':
                 if (n2 != 0) return n1 / n2; // 0으로 나누는 경우 방지
-                else throw new ArithmeticException("Cannot divide by zero.");
+                else throw new ArithmeticException("0으로 나눌 수 없습니다.");
             case '+':
                 return n1 + n2; // 덧셈
             case '-':
                 return n1 - n2; // 뺄셈
             case '%':
-                return n2 % n1;
+                return n1 % n2;
             default:
-                return 0;
+                throw new IllegalArgumentException("잘못된 연산자입니다.");
         }
     }
 

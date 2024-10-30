@@ -1,11 +1,11 @@
 package gui;
 
-import gui.Design_forGui;
-import gui.RoundBtn;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import function.ButtonAction; // ButtonAction 클래스를 import
+
+
 
 public class Main_Gui extends JFrame {
     private final int width = 240;
@@ -38,6 +38,10 @@ public class Main_Gui extends JFrame {
             // 버튼 디자인 적용
             design.styleButton(buttons[i], buttonNames[i]);
 
+            // ButtonAction을 사용하여 버튼 클릭 이벤트 추가
+            buttons[i].addActionListener(new ButtonAction(inputSpace));
+
+
             if (buttonNames[i].equals("0")) {
                 addComponent(buttonPanel, buttons[i], x, y, 2, 1, gbc);
                 x++;
@@ -54,7 +58,7 @@ public class Main_Gui extends JFrame {
         add(inputSpace);
         add(buttonPanel);
 
-        setTitle("Calculator");
+        setTitle("게산기");
         setVisible(true);
         setSize(width, height);
         setLocationRelativeTo(null);

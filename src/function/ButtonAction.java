@@ -20,8 +20,18 @@ public class ButtonAction implements ActionListener {
         if (inputValue.equals("C")) {
             inputSpace.setText("");
         } else if (inputValue.equals("=")) {
-            String result = Double.toString(calculatorLogic.calculate(inputSpace.getText()));
-            inputSpace.setText(result);
+            // 입력값의 연산자를 변환
+            String expression = inputSpace.getText()
+                    .replace("×", "x")  // 곱셈 기호 변경
+                    .replace("÷", "÷");  // 나눗셈 기호 변경 (변경 없음)
+
+            try {
+                String result = Double.toString(calculatorLogic.calculate(expression));
+                inputSpace.setText(result);
+            } catch (Exception ex) {
+                inputSpace.setText("Error"); // 오류 발생 시 표시
+                System.out.println("Error in calculation: " + ex.getMessage()); // 콘솔에 오류 메시지 출력
+            }
         } else if (inputValue.matches("[÷+x-]") && !inputSpace.getText().isEmpty()) {
             handleOperator(inputValue);
         } else {
@@ -29,6 +39,7 @@ public class ButtonAction implements ActionListener {
         }
         prevOperation = inputValue;
     }
+
 
     private void handleOperator(String inputValue) {
         String currentText = inputSpace.getText();
