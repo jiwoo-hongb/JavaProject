@@ -1,20 +1,34 @@
+/**
+ * CalculatorLogic 클래스는 계산기의 핵심 로직을 담당하는 클래스입니다.
+ * 입력된 수식 문자열을 처리하여 스택을 사용해 연산 우선순위에 맞춰 계산을 수행합니다.
+ */
 package function;
 
 import java.util.Stack;
 
+/**
+ * CalculatorLogic 클래스는 중위 표기법으로 입력된 수식을 받아서 스택을 사용하여
+ * 연산자의 우선순위에 따라 계산을 수행하고 최종 결과를 반환합니다.
+ */
 public class CalculatorLogic {
-    private Stack<Double> numStack = new Stack<>();
-    private Stack<Character> opStack = new Stack<>();
-    private StringBuilder num = new StringBuilder();
+    private Stack<Double> numStack = new Stack<>(); // 숫자를 저장하는 스택
+    private Stack<Character> opStack = new Stack<>(); // 연산자를 저장하는 스택
+    private StringBuilder num = new StringBuilder(); // 숫자를 임시 저장하는 StringBuilder
 
+    /**
+     * 주어진 수식 문자열을 계산하여 결과를 반환합니다.
+     *
+     * @param inputText 계산할 수식 문자열
+     * @return 계산 결과(double)
+     */
     double calculate(String inputText) {
         preprocess(inputText); // 입력된 문자열 전처리
 
         // 모든 연산이 끝난 후 최종 결과 계산
         while (!opStack.isEmpty()) {
-            double n1 = numStack.pop(); // 두 숫자를 꺼냄
-            double n2 = numStack.pop();
-            char op = opStack.pop(); // 연산자를 꺼냄
+            double n1 = numStack.pop(); // 첫 번째 피연산자
+            double n2 = numStack.pop(); // 두 번째 피연산자
+            char op = opStack.pop(); // 연산자
             numStack.push(applyOperation(n2, n1, op)); // 연산 결과를 다시 스택에 추가
         }
 
@@ -22,6 +36,11 @@ public class CalculatorLogic {
         return numStack.isEmpty() ? 0 : numStack.pop();
     }
 
+    /**
+     * 입력된 수식 문자열을 전처리하여 숫자와 연산자를 각각 스택에 저장합니다.
+     *
+     * @param inputText 계산할 수식 문자열
+     */
     private void preprocess(String inputText) {
         numStack.clear();
         opStack.clear();
@@ -56,24 +75,38 @@ public class CalculatorLogic {
         }
     }
 
+    /**
+     * 두 숫자와 연산자를 받아서 해당 연산을 수행합니다.
+     *
+     * @param n1 첫 번째 피연산자
+     * @param n2 두 번째 피연산자
+     * @param oper 적용할 연산자
+     * @return 연산 결과
+     */
     private double applyOperation(double n1, double n2, char oper) {
         switch (oper) {
             case 'x':
-                return n1 * n2;
+                return n1 * n2; // 곱셈
             case '÷':
-                if (n2 != 0) return n1 / n2; // 0으로 나누는 경우 방지
+                if (n2 != 0) return n1 / n2; // 나눗셈 (0으로 나누는 경우 방지)
                 else throw new ArithmeticException("0으로 나눌 수 없습니다.");
             case '+':
                 return n1 + n2; // 덧셈
             case '-':
                 return n1 - n2; // 뺄셈
             case '%':
-                return n1 % n2;
+                return n1 % n2; // 나머지 연산
             default:
                 throw new IllegalArgumentException("잘못된 연산자입니다.");
         }
     }
 
+    /**
+     * 주어진 연산자의 우선순위를 반환합니다.
+     *
+     * @param op 우선순위를 확인할 연산자
+     * @return 연산자의 우선순위 (높을수록 우선순위가 높음)
+     */
     private int precedence(char op) {
         switch (op) {
             case '+':
