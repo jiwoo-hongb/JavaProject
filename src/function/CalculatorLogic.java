@@ -1,22 +1,30 @@
-/**
- * CalculatorLogic 클래스는 계산기의 핵심 로직을 담당하는 클래스입니다.
- * 입력된 수식 문자열을 처리하여 스택을 사용해 연산 우선순위에 맞춰 계산을 수행합니다.
- */
 package function;
 
 import java.util.Stack;
 
 /**
- * CalculatorLogic 클래스는 중위 표기법으로 입력된 수식을 받아서 스택을 사용하여
- * 연산자의 우선순위에 따라 계산을 수행하고 최종 결과를 반환합니다.
+ * {@code CalculatorLogic} 계산기의 핵심 로직을 담당하는 클래스이며, 입력된 수식 문자열을 처리하여 스택을 사용해 연산 우선순위에 맞춰 계산을 수행
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-10-22
+ * @lastModified 2024-11-01
+ *
+ *            <ul>
+ *            <header>[기능 전면 수정 도입 - 기존의 기능을 담당하던 클래스들을 전부 삭제하고 다시 재작성 한 클래스라는 것을 알려드립니다.]</header><br><br>
+ *            <li>2024-10-30: CalculatorLogic 클래스 최초 생성</li><br>
+ *            <li>2024-10-30: 새로운 사칙연산 계산 알고리즘 재작성</li><br>
+ *
+ *            <li>2024-10-31: 새로 작성한 코드 내의 오류 발생 수정 진행</li>
+ *            </ul>
  */
+
 public class CalculatorLogic {
     private Stack<Double> numStack = new Stack<>(); // 숫자를 저장하는 스택
     private Stack<Character> opStack = new Stack<>(); // 연산자를 저장하는 스택
     private StringBuilder num = new StringBuilder(); // 숫자를 임시 저장하는 StringBuilder
 
     /**
-     * 주어진 수식 문자열을 계산하여 결과를 반환합니다.
+     * <li>주어진 수식 문자열을 계산하여 결과를 반환</li>
      *
      * @param inputText 계산할 수식 문자열
      * @return 계산 결과(double)
@@ -37,7 +45,7 @@ public class CalculatorLogic {
     }
 
     /**
-     * 입력된 수식 문자열을 전처리하여 숫자와 연산자를 각각 스택에 저장합니다.
+     * <li>입력된 수식 문자열을 전처리하여 숫자와 연산자를 각각 스택에 저장</li>
      *
      * @param inputText 계산할 수식 문자열
      */
@@ -76,7 +84,7 @@ public class CalculatorLogic {
     }
 
     /**
-     * 두 숫자와 연산자를 받아서 해당 연산을 수행합니다.
+     * <li>두 숫자와 연산자를 받아서 해당 연산을 수행</li>
      *
      * @param n1 첫 번째 피연산자
      * @param n2 두 번째 피연산자
@@ -102,7 +110,7 @@ public class CalculatorLogic {
     }
 
     /**
-     * 주어진 연산자의 우선순위를 반환합니다.
+     * <li>주어진 연산자의 우선순위를 반환</li>
      *
      * @param op 우선순위를 확인할 연산자
      * @return 연산자의 우선순위 (높을수록 우선순위가 높음)

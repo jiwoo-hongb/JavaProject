@@ -1,16 +1,29 @@
-/**
- * Design_forGui 클래스는 계산기 GUI에 사용할 색상과 폰트를 정의하고,
- * 버튼과 입력 공간의 스타일을 설정하는 기능을 제공합니다.
- */
 package gui;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Design_forGui 클래스는 계산기 인터페이스에 일관된 디자인을 제공하기 위해
- * 색상과 폰트를 정의하고, 각 구성 요소의 스타일을 설정하는 메서드를 포함합니다.
+ * {@code Design_forGui} 계산기 GUI에 사용할 색상과 폰트를 정의하고, 버튼과 입력 공간의 스타일을 설정하는 기능을 제공
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-10-22
+ * @lastModified 2024-11-01
+ *
+ *            <ul>
+ *            <li>2024-10-22: Design_forGui 클래스 최초 생성</li>
+ *            <li>2024-10-22: Main_Gui클래스에서 디자인 부분만 따로 분리하여 클래스 생성</li>
+ *            <li>2024-10-22: 버튼, 패널 색상 수정</li>
+ *            <li>2024-10-22: 버튼 모형 수정</li>
+ *
+ *            <header>[기능 전면 수정 도입]</header><br><br>
+ *            <li>2024-10-30: 기능 전면 수정과 동시에 디자인 수정 도입</li>
+ *            <li>2024-10-30: 버튼 디자인 수정"</li>
+ *            <li>2024-10-30: 1번 수정사항에 따른 디자인 세부사항관련 코드 수정</li><br>
+ *
  */
+
 public class Design_forGui {
     // 색상 및 폰트 관련 변수들
     private final Color operatorColor = new Color(227, 148, 55); // 연산자 버튼 색상
@@ -22,7 +35,7 @@ public class Design_forGui {
     private final Font labelFont = new Font("Dialog", Font.PLAIN, 40); // 입력 표시 폰트 설정
 
     /**
-     * 배경 색상을 반환합니다.
+     * <li>배경 색상을 반환</li>
      *
      * @return backgroundColor, 배경 색상
      */
@@ -31,7 +44,7 @@ public class Design_forGui {
     }
 
     /**
-     * 연산자 버튼 색상을 반환합니다.
+     * <li>연산자 버튼 색상을 반환</li>
      *
      * @return operatorColor, 연산자 버튼 색상
      */
@@ -40,7 +53,7 @@ public class Design_forGui {
     }
 
     /**
-     * 제어 버튼 색상을 반환합니다.
+     * <li>제어 버튼 색상을 반환</li>
      *
      * @return controlColor, 제어 버튼 색상
      */
@@ -49,7 +62,7 @@ public class Design_forGui {
     }
 
     /**
-     * 숫자 버튼 색상을 반환합니다.
+     * <li>숫자 버튼 색상을 반환</li>
      *
      * @return numBtnColor, 숫자 버튼 색상
      */
@@ -58,7 +71,7 @@ public class Design_forGui {
     }
 
     /**
-     * 버튼에 사용할 폰트를 반환합니다.
+     * <li>버튼에 사용할 폰트를 반환</li>
      *
      * @return buttonFont, 버튼 폰트
      */
@@ -67,7 +80,7 @@ public class Design_forGui {
     }
 
     /**
-     * 입력 표시창에 사용할 폰트를 반환합니다.
+     * <li>입력 표시창에 사용할 폰트를 반환</li>
      *
      * @return labelFont, 입력 표시 폰트
      */
@@ -76,8 +89,8 @@ public class Design_forGui {
     }
 
     /**
-     * JButton의 스타일을 설정합니다. 버튼의 텍스트에 따라
-     * 색상을 설정하며, 버튼의 폰트와 텍스트 색상을 지정합니다.
+     * <li>[JButton의 스타일을 설정]<li>
+     * <li>버튼의 텍스트에 따라 색상을 설정하며, 버튼의 폰트와 텍스트 색상을 지정</li>
      *
      * @param button 스타일을 적용할 JButton
      * @param text 버튼에 표시할 텍스트
@@ -98,8 +111,8 @@ public class Design_forGui {
     }
 
     /**
-     * 입력 공간의 스타일을 설정합니다. 배경 색상, 폰트, 텍스트 정렬 및
-     * 편집 가능 여부를 설정합니다.
+     * <li>[입력 공간의 스타일을 설정]<li>
+     *<li>배경 색상, 폰트, 텍스트 정렬 및 편집 가능 여부를 설정</li>
      *
      * @param inputSpace 스타일을 적용할 JTextField
      */

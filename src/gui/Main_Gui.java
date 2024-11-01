@@ -4,10 +4,39 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import function.ButtonAction; // ButtonAction 클래스를 import
-
 /**
- * Main_Gui 클래스는 계산기 GUI를 설정하며, 입력 표시창과 버튼들을 초기화합니다.
- * 각 버튼에 대한 디자인 적용 및 레이아웃 구성을 담당합니다.
+ * {@code Calculate} 계산기 GUI를 설정하며 계산기의 UI와 버튼의 Action 코드를 불러와 실행시키는 클래스
+ *
+ * @author jiwoo-hongb(홍지우, jwhong48 @ gmail.com)
+ *
+ * @create 2024-10-15
+ * @lastModified 2024-11-01
+ *
+ *            <ul>
+ *            <li>2024-10-15: Main_GUI클래스 최초 생성</li><br>
+ *
+ *            <li>2024-10-18: 계산기 종류 라벨 위치 수정</li>
+ *            <li>2024-10-18: 결과값 라벨 수정 "JTextField -> JLabel"</li>
+ *            <li>2024-10-18:  버튼 위치 수정</li>
+ *            <li>2024-10-18: 프레임 레이아웃 수정 및 패널 여백 설정</li><br>
+ *
+ *            <li>2024-10-19: BtnClickListener 호출 추가</li>
+ *            <li>2024-10-19: 버튼 클릭시 콘솔창으로 숫자 입력받기까지는 완료</li><br>
+ *
+ *            <li>2024-10-20: Main_Gui클래스에서 수식 입력받는 곳과 계산결과 출력하는 곳 분리 =>
+ * textPanel 추가</li><br>
+ *
+ *            <li>2024-10-22: Main_Gui클래스의 디자인 부분만 따로 분리</li><br>
+ *
+ *            <header>[기능 전면 수정 도입]</header><br><br>
+ *            <li>2024-10-30: solution_Label, result_Label 디자인, 폰트 수정</li>
+ *            <li>2024-10-30: 수정된 각 클래스에 맞게 코드 수정 진행</li><br>
+ *
+ *            <li>2024-10-31: 수정된 각 클래스에 맞게 코드 수정 진행</li>
+ *            <li>2024-10-31: Javadoc 작성</li><br>
+ *
+ *            <li>2024-11-01: Javadoc 수정 완료</li>
+ *            </ul>
  */
 
 public class Main_Gui extends JFrame {
@@ -19,8 +48,11 @@ public class Main_Gui extends JFrame {
     private Design_forGui design = new Design_forGui();
 
     /**
-     * Main_Gui 생성자는 계산기의 GUI 레이아웃과 구성 요소를 초기화합니다.
-     * 입력 표시창과 버튼 패널을 설정하고, 각 버튼에 스타일을 적용합니다.
+     * <li>{@code Main_Gui} 클래스는 계산기의 그래픽 사용자 인터페이스(GUI)를 설정하고 사용자가 입력 및 계산을 수행할 수 있도록 기능 제공</li>
+     * <li>입력 표시창, 버튼 및 계산기 디자인 요소를 포함하며, 각 버튼의 액션을 {@link ButtonAction} 클래스에 위임함</li>
+     * <li>계산기의 기본 레이아웃은 {@link GridBagLayout}을 사용</li>
+     * <li>@link RoundBtn} 클래스는 각 버튼의 모양을 둥글게 만들어 사용자에게 친숙한 디자인 제공</li>
+     * <li>{@link Design_forGui} 클래스는 전체적인 GUI 스타일(색상, 폰트 등)을 관리</li>
      */
     public Main_Gui() {
         setLayout(null);
@@ -76,7 +108,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 지정된 제약 조건을 사용하여 구성 요소를 특정 패널에 추가합니다.
+     * <li>지정된 제약 조건을 사용하여 구성 요소를 특정 패널에 추가</li>
      *
      * @param panel 구성 요소를 추가할 JPanel
      * @param comp 추가할 Component
@@ -95,7 +127,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 입력 및 출력을 표시하는 JTextField를 반환합니다.
+     * <li>입력 및 출력을 표시하는 JTextField를 반환</li>
      *
      * @return inputSpace, 입력 표시 JTextField
      */
@@ -104,7 +136,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 계산기 버튼 배열을 반환합니다.
+     * <li>계산기 버튼 배열을 반환</li>
      *
      * @return buttons, RoundBtn 객체로 이루어진 배열
      */
@@ -113,7 +145,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * 모든 계산기 버튼에 ActionListener를 추가합니다.
+     * <li>모든 계산기 버튼에 ActionListener를 추가</li>
      *
      * @param listener 각 버튼에 연결할 ActionListener
      */
@@ -124,7 +156,7 @@ public class Main_Gui extends JFrame {
     }
 
     /**
-     * main 메서드는 Main_Gui 클래스를 인스턴스화하여 계산기 창을 초기화하고 표시합니다.
+     * <li>main 메서드는 Main_Gui 클래스를 인스턴스화하여 계산기 창을 초기화하고 표시</li>
      *
      * @param args 커맨드라인 인수 (사용되지 않음)
      */
