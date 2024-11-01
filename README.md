@@ -1,6 +1,6 @@
 # Java Calculator Project
 
-![Calculator Screenshot]([path/to/screenshot.png](https://github.com/user-attachments/assets/85a6a4e6-6eb6-4347-beb2-0c08d92eafec)) <!-- Use a screenshot of your calculator here -->
+![Java_calculator](https://github.com/user-attachments/assets/01be923d-1540-4249-82a6-f89332e7a195) <!-- Use a screenshot of your calculator here -->
 
 ## 프로젝트 개요
 이 프로젝트는 Java의 `Swing`을 사용하여 개발한 기본적인 계산기 프로그램입니다. 사용자 친화적인 GUI를 제공하며, 덧셈, 뺄셈, 곱셈, 나눗셈과 같은 일반적인 계산 기능을 포함하고 있습니다. **둥근 버튼 디자인**과 **모던한 인터페이스**로 사용자 경험을 향상시켰습니다.
