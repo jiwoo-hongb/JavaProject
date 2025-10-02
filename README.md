@@ -1,4 +1,4 @@
-# Java Calculator Project
+# Java Calculator Project(Midterm)
 
 ![Java_calculator](https://github.com/user-attachments/assets/01be923d-1540-4249-82a6-f89332e7a195) <!-- Use a screenshot of your calculator here -->
 
